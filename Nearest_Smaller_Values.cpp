@@ -8,22 +8,21 @@ int main()
 
 	int n;
 	cin >> n;
-	int a[n+1], left[n+1];
+	int a[n+1];
+
+	a[0] = 0;
 
 	for ( int i = 1; i <= n; i++ ) cin >> a[i];
 
 	stack<int> st;
 
-	a[0] = INT_MIN;
 	st.push( 0 );
 
 	for ( int i = 1; i <= n; i++ ) {
-		while ( st.size() && a[st.top()] >= a[i] ) st.pop();
-		left[i] = st.top();
-		st.push( i ) ;
+		while ( a[st.top()] >= a[i] ) st.pop();
+		cout << st.top() << " ";
+		st.push( i ); 
 	}
-
-	for ( int i = 1; i <= n; i++ ) cout << left[i] << " ";
 	cout << "\n";
 
 	return 0;
